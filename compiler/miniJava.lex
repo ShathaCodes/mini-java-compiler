@@ -3,7 +3,7 @@
  #include <stdio.h>	
  #include <stdlib.h>	
  		
- #include "exemple.tab.h"	                                                                         	
+ #include "miniJava.tab.h"	                                                                         	
  /* Local stuff we need here... */	
 #include <math.h>	
 
