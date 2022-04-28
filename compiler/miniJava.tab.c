@@ -539,17 +539,17 @@ static const yytype_uint8 yyrline[] =
 {
        0,    68,    68,    74,    75,    78,    79,    80,    81,    82,
       84,    85,    86,    87,    90,    91,    93,    94,    96,    97,
-      99,   103,   104,   106,   107,   109,   110,   111,   113,   114,
-     116,   117,   118,   119,   120,   121,   122,   123,   124,   129,
-     130,   131,   132,   133,   134,   135,   138,   139,   140,   141,
-     142,   143,   144,   147,   148,   149,   150,   151,   152,   153,
-     158,   159,   160,   161,   162,   163,   164,   165,   167,   168,
-     169,   170,   171,   173,   174,   175,   176,   177,   179,   180,
-     181,   182,   184,   185,   186,   187,   188,   189,   192,   193,
-     195,   196,   197,   199,   200,   201,   203,   204,   205,   206,
-     207,   210,   211,   212,   213,   214,   216,   217,   218,   219,
-     220,   222,   223,   224,   225,   226,   228,   229,   231,   232,
-     233,   236,   237,   239,   240,   241,   244
+      99,   104,   105,   107,   108,   110,   111,   112,   114,   115,
+     117,   118,   119,   120,   121,   122,   123,   124,   125,   130,
+     131,   132,   133,   134,   135,   136,   139,   140,   141,   142,
+     143,   144,   145,   148,   149,   150,   151,   152,   153,   154,
+     159,   160,   161,   162,   163,   164,   165,   166,   168,   169,
+     170,   171,   172,   174,   175,   176,   177,   178,   180,   181,
+     182,   183,   185,   186,   187,   188,   189,   190,   193,   194,
+     196,   197,   198,   200,   201,   202,   204,   205,   206,   207,
+     208,   211,   212,   213,   214,   215,   217,   218,   219,   220,
+     221,   223,   224,   225,   226,   227,   229,   230,   232,   233,
+     234,   237,   238,   240,   241,   242,   245
 };
 #endif
 
@@ -1858,490 +1858,491 @@ yyreduce:
 /* Line 1455 of yacc.c  */
 #line 100 "miniJava.y"
     {
-                                insert_declaration("x", "global", "var", 0, 0 , 0);
+                                printf("\n hello \n");
+                                insert_declaration((yyvsp[(2) - (3)]), "global", "var", 0, 0 , 0);
                         ;}
     break;
 
   case 21:
 
 /* Line 1455 of yacc.c  */
-#line 103 "miniJava.y"
+#line 104 "miniJava.y"
     {yyerror ("erreur identifier errone dans la line :"); YYABORT;}
     break;
 
   case 22:
 
 /* Line 1455 of yacc.c  */
-#line 104 "miniJava.y"
+#line 105 "miniJava.y"
     {yyerror ("POINT_VIRGULE  manquant dans la line :"); YYABORT;}
     break;
 
   case 26:
 
 /* Line 1455 of yacc.c  */
-#line 110 "miniJava.y"
+#line 111 "miniJava.y"
     {yyerror ("VIRGULE manquant dans la line :"); YYABORT;}
     break;
 
   case 27:
 
 /* Line 1455 of yacc.c  */
-#line 111 "miniJava.y"
+#line 112 "miniJava.y"
     {yyerror ("identifier errone dans la line :"); YYABORT;}
     break;
 
   case 31:
 
 /* Line 1455 of yacc.c  */
-#line 117 "miniJava.y"
+#line 118 "miniJava.y"
     {yyerror ("mot clee class manquant ou errone dans la line :"); YYABORT;}
     break;
 
   case 32:
 
 /* Line 1455 of yacc.c  */
-#line 118 "miniJava.y"
+#line 119 "miniJava.y"
     {yyerror ("erreur identifier errone dans la line :"); YYABORT;}
     break;
 
   case 33:
 
 /* Line 1455 of yacc.c  */
-#line 119 "miniJava.y"
+#line 120 "miniJava.y"
     {yyerror ("erreur parenthese ouvarnte  manquante dans la line :"); YYABORT;}
     break;
 
   case 34:
 
 /* Line 1455 of yacc.c  */
-#line 120 "miniJava.y"
+#line 121 "miniJava.y"
     {yyerror ("erreur parenthese fermante  manquante dans la line :"); YYABORT;}
     break;
 
   case 35:
 
 /* Line 1455 of yacc.c  */
-#line 121 "miniJava.y"
+#line 122 "miniJava.y"
     {yyerror ("acolade ouvrant  manquant dans la line :"); YYABORT;}
     break;
 
   case 36:
 
 /* Line 1455 of yacc.c  */
-#line 122 "miniJava.y"
+#line 123 "miniJava.y"
     {yyerror ("mot clee return manquant ou errone dans la line :"); YYABORT;}
     break;
 
   case 37:
 
 /* Line 1455 of yacc.c  */
-#line 123 "miniJava.y"
+#line 124 "miniJava.y"
     {yyerror ("POINT_VIRGULE manquant  dans la line :"); YYABORT;}
     break;
 
   case 38:
 
 /* Line 1455 of yacc.c  */
-#line 124 "miniJava.y"
+#line 125 "miniJava.y"
     {yyerror ("acolade fermant  manquante dans la line :"); YYABORT;}
     break;
 
   case 40:
 
 /* Line 1455 of yacc.c  */
-#line 130 "miniJava.y"
+#line 131 "miniJava.y"
     {yyerror ("erreur tabulation ouvrante manquante dans la line :"); YYABORT;}
     break;
 
   case 41:
 
 /* Line 1455 of yacc.c  */
-#line 131 "miniJava.y"
+#line 132 "miniJava.y"
     {yyerror ("erreur tabulation fermante manquante dans la line :"); YYABORT;}
     break;
 
   case 45:
 
 /* Line 1455 of yacc.c  */
-#line 135 "miniJava.y"
+#line 136 "miniJava.y"
     {yyerror ("erreur de type dans la line :"); YYABORT;}
     break;
 
   case 47:
 
 /* Line 1455 of yacc.c  */
-#line 139 "miniJava.y"
+#line 140 "miniJava.y"
     {yyerror ("mot cle CLASS errone ou bien manquant on line : "); YYABORT;}
     break;
 
   case 48:
 
 /* Line 1455 of yacc.c  */
-#line 140 "miniJava.y"
+#line 141 "miniJava.y"
     {yyerror (" erreur identifier errone dans la line : "); YYABORT;}
     break;
 
   case 49:
 
 /* Line 1455 of yacc.c  */
-#line 141 "miniJava.y"
+#line 142 "miniJava.y"
     {yyerror (" acolade ouvrant manquant dans la line: "); YYABORT;}
     break;
 
   case 50:
 
 /* Line 1455 of yacc.c  */
-#line 142 "miniJava.y"
+#line 143 "miniJava.y"
     {yyerror (" acolade ouvrant manquant dans la line: "); YYABORT;}
     break;
 
   case 51:
 
 /* Line 1455 of yacc.c  */
-#line 143 "miniJava.y"
+#line 144 "miniJava.y"
     {yyerror ("acolade fermant  manquant dans la line:"); YYABORT;}
     break;
 
   case 52:
 
 /* Line 1455 of yacc.c  */
-#line 144 "miniJava.y"
+#line 145 "miniJava.y"
     {yyerror ("acolade fermant  manquant dans la line: "); YYABORT;}
     break;
 
   case 54:
 
 /* Line 1455 of yacc.c  */
-#line 148 "miniJava.y"
+#line 149 "miniJava.y"
     {yyerror (" parenthese ouvrante manquante dans la line: "); YYABORT;}
     break;
 
   case 55:
 
 /* Line 1455 of yacc.c  */
-#line 149 "miniJava.y"
+#line 150 "miniJava.y"
     {yyerror (" erreur mot cle String errone dans la line:  "); YYABORT;}
     break;
 
   case 56:
 
 /* Line 1455 of yacc.c  */
-#line 150 "miniJava.y"
+#line 151 "miniJava.y"
     {yyerror (" tabulation ouvrante manquante dans la line: "); YYABORT;}
     break;
 
   case 57:
 
 /* Line 1455 of yacc.c  */
-#line 151 "miniJava.y"
+#line 152 "miniJava.y"
     {yyerror (" tabulation fermante manquante dans la line: "); YYABORT;}
     break;
 
   case 58:
 
 /* Line 1455 of yacc.c  */
-#line 152 "miniJava.y"
+#line 153 "miniJava.y"
     {yyerror (" erreur identifier errone dans la line : "); YYABORT;}
     break;
 
   case 59:
 
 /* Line 1455 of yacc.c  */
-#line 153 "miniJava.y"
+#line 154 "miniJava.y"
     {yyerror (" parenthese  fermant manquant dans la line: "); YYABORT;}
     break;
 
   case 64:
 
 /* Line 1455 of yacc.c  */
-#line 162 "miniJava.y"
+#line 163 "miniJava.y"
     {yyerror ("mot cle IF errone ou bien manquant on line : "); YYABORT;}
     break;
 
   case 65:
 
 /* Line 1455 of yacc.c  */
-#line 163 "miniJava.y"
+#line 164 "miniJava.y"
     {yyerror (" parenthese  ouvrante manquant dans la line: "); YYABORT;}
     break;
 
   case 66:
 
 /* Line 1455 of yacc.c  */
-#line 164 "miniJava.y"
+#line 165 "miniJava.y"
     {yyerror (" parenthese  fermante manquant dans la line: "); YYABORT;}
     break;
 
   case 67:
 
 /* Line 1455 of yacc.c  */
-#line 165 "miniJava.y"
+#line 166 "miniJava.y"
     {yyerror ("mot cle ELSE errone ou bien manquant on line : "); YYABORT;}
     break;
 
   case 70:
 
 /* Line 1455 of yacc.c  */
-#line 169 "miniJava.y"
+#line 170 "miniJava.y"
     {yyerror ("mot cle WHILE errone ou bien manquant on line : "); YYABORT;}
     break;
 
   case 71:
 
 /* Line 1455 of yacc.c  */
-#line 170 "miniJava.y"
+#line 171 "miniJava.y"
     {yyerror (" parenthese  ouvrante manquant dans la line: "); YYABORT;}
     break;
 
   case 72:
 
 /* Line 1455 of yacc.c  */
-#line 171 "miniJava.y"
+#line 172 "miniJava.y"
     {yyerror (" parenthese  fermante manquant dans la line: "); YYABORT;}
     break;
 
   case 74:
 
 /* Line 1455 of yacc.c  */
-#line 174 "miniJava.y"
+#line 175 "miniJava.y"
     {yyerror ("system.out.println errone ou bien manquant on line : "); YYABORT;}
     break;
 
   case 75:
 
 /* Line 1455 of yacc.c  */
-#line 175 "miniJava.y"
+#line 176 "miniJava.y"
     {yyerror (" parenthese  ouvrante manquant dans la line: "); YYABORT;}
     break;
 
   case 76:
 
 /* Line 1455 of yacc.c  */
-#line 176 "miniJava.y"
+#line 177 "miniJava.y"
     {yyerror (" parenthese  fermante manquant dans la line: "); YYABORT;}
     break;
 
   case 77:
 
 /* Line 1455 of yacc.c  */
-#line 177 "miniJava.y"
+#line 178 "miniJava.y"
     {yyerror ("POINT_VIRGULE  manquant dans la line :"); YYABORT;}
     break;
 
   case 79:
 
 /* Line 1455 of yacc.c  */
-#line 180 "miniJava.y"
+#line 181 "miniJava.y"
     {yyerror ("erreur identifier errone dans la line :"); YYABORT;}
     break;
 
   case 80:
 
 /* Line 1455 of yacc.c  */
-#line 181 "miniJava.y"
+#line 182 "miniJava.y"
     {yyerror ("AFFECTATION errone dans la line :"); YYABORT;}
     break;
 
   case 81:
 
 /* Line 1455 of yacc.c  */
-#line 182 "miniJava.y"
+#line 183 "miniJava.y"
     {yyerror ("POINT_VIRGULE  manquant dans la line :"); YYABORT;}
     break;
 
   case 83:
 
 /* Line 1455 of yacc.c  */
-#line 185 "miniJava.y"
+#line 186 "miniJava.y"
     {yyerror ("erreur identifier errone dans la line :"); YYABORT;}
     break;
 
   case 84:
 
 /* Line 1455 of yacc.c  */
-#line 186 "miniJava.y"
+#line 187 "miniJava.y"
     {yyerror ("erreur tabulation ouvrante manquante dans la line :"); YYABORT;}
     break;
 
   case 85:
 
 /* Line 1455 of yacc.c  */
-#line 187 "miniJava.y"
+#line 188 "miniJava.y"
     {yyerror ("erreur tabulation fermante manquante dans la line :"); YYABORT;}
     break;
 
   case 86:
 
 /* Line 1455 of yacc.c  */
-#line 188 "miniJava.y"
+#line 189 "miniJava.y"
     {yyerror ("AFFECTATION errone dans la line :"); YYABORT;}
     break;
 
   case 87:
 
 /* Line 1455 of yacc.c  */
-#line 189 "miniJava.y"
+#line 190 "miniJava.y"
     {yyerror ("POINT_VIRGULE  manquant dans la line :"); YYABORT;}
     break;
 
   case 89:
 
 /* Line 1455 of yacc.c  */
-#line 193 "miniJava.y"
+#line 194 "miniJava.y"
     {yyerror ("operateur manquant dans la line :"); YYABORT;}
     break;
 
   case 91:
 
 /* Line 1455 of yacc.c  */
-#line 196 "miniJava.y"
+#line 197 "miniJava.y"
     {yyerror ("erreur tabulation ouvrante manquante dans la line :"); YYABORT;}
     break;
 
   case 92:
 
 /* Line 1455 of yacc.c  */
-#line 197 "miniJava.y"
+#line 198 "miniJava.y"
     {yyerror ("erreur tabulation fermante manquante dans la line :"); YYABORT;}
     break;
 
   case 94:
 
 /* Line 1455 of yacc.c  */
-#line 200 "miniJava.y"
+#line 201 "miniJava.y"
     {yyerror ("POINT manquant dans la line :"); YYABORT;}
     break;
 
   case 95:
 
 /* Line 1455 of yacc.c  */
-#line 201 "miniJava.y"
+#line 202 "miniJava.y"
     {yyerror ("mot cle LENGTH manquant dans la line :"); YYABORT;}
     break;
 
   case 97:
 
 /* Line 1455 of yacc.c  */
-#line 204 "miniJava.y"
+#line 205 "miniJava.y"
     {yyerror ("POINT manquant dans la line :"); YYABORT;}
     break;
 
   case 98:
 
 /* Line 1455 of yacc.c  */
-#line 205 "miniJava.y"
+#line 206 "miniJava.y"
     {yyerror ("erreur identifier errone dans la line :"); YYABORT;}
     break;
 
   case 99:
 
 /* Line 1455 of yacc.c  */
-#line 206 "miniJava.y"
+#line 207 "miniJava.y"
     {yyerror ("erreur parenthese ouvarnte  manquante dans la line :"); YYABORT;}
     break;
 
   case 100:
 
 /* Line 1455 of yacc.c  */
-#line 207 "miniJava.y"
+#line 208 "miniJava.y"
     {yyerror ("erreur parenthese fermante  manquante dans la line :"); YYABORT;}
     break;
 
   case 105:
 
 /* Line 1455 of yacc.c  */
-#line 214 "miniJava.y"
+#line 215 "miniJava.y"
     {yyerror ("erreur dans la line :"); YYABORT;}
     break;
 
   case 107:
 
 /* Line 1455 of yacc.c  */
-#line 217 "miniJava.y"
+#line 218 "miniJava.y"
     {yyerror (" mot cle NEW manquant ou bien errone dans la line : "); YYABORT;}
     break;
 
   case 108:
 
 /* Line 1455 of yacc.c  */
-#line 218 "miniJava.y"
+#line 219 "miniJava.y"
     {yyerror (" mot cle int manquant ou bien errone dans la line : "); YYABORT;}
     break;
 
   case 109:
 
 /* Line 1455 of yacc.c  */
-#line 219 "miniJava.y"
+#line 220 "miniJava.y"
     {yyerror (" erreur acolade ouvarnte  manquante dans la line : "); YYABORT;}
     break;
 
   case 110:
 
 /* Line 1455 of yacc.c  */
-#line 220 "miniJava.y"
+#line 221 "miniJava.y"
     {yyerror (" erreur acolade fermante  manquante dans la line : "); YYABORT;}
     break;
 
   case 112:
 
 /* Line 1455 of yacc.c  */
-#line 223 "miniJava.y"
+#line 224 "miniJava.y"
     {yyerror (" mot cle NEW manquant ou bien errone dans la line : "); YYABORT;}
     break;
 
   case 113:
 
 /* Line 1455 of yacc.c  */
-#line 224 "miniJava.y"
+#line 225 "miniJava.y"
     {yyerror (" erreur identifier errone dans la line : "); YYABORT;}
     break;
 
   case 114:
 
 /* Line 1455 of yacc.c  */
-#line 225 "miniJava.y"
+#line 226 "miniJava.y"
     {yyerror ("erreur parenthese ouvarnte  manquante dans la line :"); YYABORT;}
     break;
 
   case 115:
 
 /* Line 1455 of yacc.c  */
-#line 226 "miniJava.y"
+#line 227 "miniJava.y"
     {yyerror ("erreur parenthese fermante  manquante dans la line :"); YYABORT;}
     break;
 
   case 117:
 
 /* Line 1455 of yacc.c  */
-#line 229 "miniJava.y"
+#line 230 "miniJava.y"
     {yyerror ("erreur dans la line :"); YYABORT;}
     break;
 
   case 119:
 
 /* Line 1455 of yacc.c  */
-#line 232 "miniJava.y"
+#line 233 "miniJava.y"
     {yyerror ("erreur parenthese ouvarnte  manquante dans la line :"); YYABORT;}
     break;
 
   case 120:
 
 /* Line 1455 of yacc.c  */
-#line 233 "miniJava.y"
+#line 234 "miniJava.y"
     {yyerror ("erreur parenthese fermante  manquante dans la line :"); YYABORT;}
     break;
 
   case 124:
 
 /* Line 1455 of yacc.c  */
-#line 240 "miniJava.y"
+#line 241 "miniJava.y"
     {yyerror ("erreur VIRGULE manquante dans la line :"); YYABORT;}
     break;
 
 
 
 /* Line 1455 of yacc.c  */
-#line 2345 "miniJava.tab.c"
+#line 2346 "miniJava.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -2553,7 +2554,7 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 252 "miniJava.y"
+#line 253 "miniJava.y"
  
 
 int yyerror(char const *msg) {

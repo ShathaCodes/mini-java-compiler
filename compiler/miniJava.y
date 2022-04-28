@@ -98,7 +98,8 @@ STATEMENTG		:STATEMENT STATEMENTG
 
 VarDeclaration		:Type ID  POINT_VIRGULE
                         {
-                                insert_declaration("x", "global", "var", 0, 0 , 0);
+                                printf("\n hello \n");
+                                insert_declaration($2, "global", "var", 0, 0 , 0);
                         }
                         |Type error POINT_VIRGULE {yyerror ("erreur identifier errone dans la line :"); YYABORT} 
                         |Type ID  error  {yyerror ("POINT_VIRGULE  manquant dans la line :"); YYABORT}; 

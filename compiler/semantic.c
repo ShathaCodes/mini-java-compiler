@@ -11,9 +11,13 @@ int taille = 0;
 //------------------------------------------------------- Function to insert an identifier
 int insert(char * id, char * scope, char * type, int lineNo, int test_init , int test_use)
 {
+    int k;
+    printf("in\n");
     int index = hashf(id);
+    printf("%s ",id);
     printf("%d ",index);
     Node* p = (Node *) malloc (sizeof (Node));
+    p->identifier = id;
     p->scope = scope;
     p->type = type;
     p->lineNo = lineNo;
@@ -22,6 +26,7 @@ int insert(char * id, char * scope, char * type, int lineNo, int test_init , int
     printf("inserted ");
       
     if (head[index] == NULL) {
+        printf("here");
         head[index] = p;
         printf("on line %d",head[index]->lineNo);
         taille++;
@@ -29,7 +34,7 @@ int insert(char * id, char * scope, char * type, int lineNo, int test_init , int
         return 1;
     }
   
-    else {
+    else {printf("there");
         Node* start = head[index];
         while (start->next != NULL)
             start = start->next;
@@ -71,18 +76,19 @@ int  modify(char * id, char * scope, char * type, int lineNo, int test_init ,int
 //------------------------------------------------------- Function to find an identifier
 Node *  find(char * id)
 {
+    
     int index = hashf(id);
+    printf("%d", index);
     Node* start = head[index];
+    
     if (start == NULL)
         return NULL;
-    while (start != NULL) {
-        if (strcmp(start->identifier,id)) {
+
+    else  {
+            printf("%s", start->identifier);
             return start;
-        }
-  
-        start = start->next;
     }
-  
+    printf("done");
     return NULL; // not found
 }
   
@@ -103,7 +109,9 @@ int  hashf(char * id)
 //------------------------------------------------------- V�rifier la red�finition des variables d�j� d�clar�es 
 
 void  insert_declaration(char * id, char * scope, char * type, int lineno, int test_init , int test_use){
+    printf("hereeeeee");
     Node * x = find(id);
+    printf("hereeeeee");
     if (x != NULL){
     	printf("ERROR: Variable  %d  deja declaree a la ligne # %d . \n", x->identifier,x->lineNo);
 	}
