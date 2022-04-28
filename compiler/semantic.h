@@ -17,7 +17,7 @@ typedef struct node {
    
 } Node;
   
-int hashf(char * id); // hash function
+int search_index(); 
 
 int insert( char * id,  char * scope,  char * type, int test_init , int test_use, int nbr_args);
   

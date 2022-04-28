@@ -1,7 +1,6 @@
 class Factorial{
     public static void main(String [] args){   
-z=7;
-
+        z=7;
     }
 }
 class dog extends cat {
@@ -9,6 +8,15 @@ class dog extends cat {
     int a ;
     int b;
     int c ;
+    public int fonction1(int k , int h){
+        System.out.println(k.fonction(a,b));
+        return 65 ;
+    }
+
+    public int fonction2(int i , int j){
+        System.out.println(k.fonction1(a,b));
+        return 65 ;
+    }
 }
 
 

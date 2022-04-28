@@ -14,7 +14,7 @@ extern int line;
 //------------------------------------------------------- Function to insert an identifier
 int insert(char * id, char * scope, char * type,   int test_init , int test_use, int nbr_args)
 {
-    int index = hashf(id);
+    int index = search_index();
     Node* p = (Node *) malloc (sizeof (Node));
     p->identifier = id;
     p->scope = scope;
@@ -22,26 +22,12 @@ int insert(char * id, char * scope, char * type,   int test_init , int test_use,
     p->test_init = test_init;
     p->test_use = test_use;
     p->nbr_args = nbr_args;
-    
       
     if (head[index] == NULL) {
-        printf("\n here");
         head[index] = p;   
         taille++;
-        printf(" %s inserted on line %d \n",id,line);
+        //printf(" %s inserted on line %d \n",id,line);
         print(p);
-        return 1;
-    }
-  
-    else {
-        Node* start = head[index];
-        while (start->next != NULL)
-            start = start->next;
-        start->next = p;
-        printf("%d",(start->next)->test_init);
-        printf("\n %d  inserted", index);
-        print(p);
-  		taille ++;
         return 1;
     }
   
@@ -52,8 +38,7 @@ int insert(char * id, char * scope, char * type,   int test_init , int test_use,
 //------------------------------------------------------- Function to modify an identifier
 int  modify(char * id, char * scope, char * type,   int test_init ,int test_use, int nbr_args )
 {
-    int index = hashf(id);
-    Node* start = head[index];
+    Node* start = find(id);
   
     if (start == NULL)
         return -1;
@@ -76,36 +61,34 @@ int  modify(char * id, char * scope, char * type,   int test_init ,int test_use,
 //------------------------------------------------------- Function to find an identifier
 Node *  find(char * id)
 {
-    int index = hashf(id);
-    Node* start = head[index];
-    if (start == NULL)
-        return NULL;
-    if (start != NULL) {
-        return start;
+    int i;
+    for (i = 0; i< 100; i++){
+        Node* start = head[i];
+        if (start != NULL && strcmp(start->identifier,id) == 0 ){
+            return start;
+        }
     }
-  
     return NULL; // not found
+    
+}
+
+int search_index(){
+    int i;
+    for (i = 0; i< 100; i++){
+        if (head[i] == NULL ){
+            return i;
+        }
+    }
+    printf("table overflow");
+    return -1 ;
 }
   
-
-  
-int  hashf(char * id)
-{
-    int asciiSum = 0;
-    int i;
-  
-    for (i = 0; i < strlen(id); i++) {
-        asciiSum = asciiSum + id[i];
-    }
-  
-    return (asciiSum % 100);
-} 
 
 //------------------------------------------------------- Verifier la redefinition des variables deja declarees 
 
 void  insert_declaration(char * id, char * scope, char * type,   int test_init , int test_use ,int nbr_args){
     Node * x = find(id);
-    if (x != NULL){
+    if (x != NULL && strcmp(x->scope,"args") != 0){
     	printf("ERROR: Variable  %s  deja declaree a la ligne # %d . \n", x->identifier,line);
 	}
     else
@@ -119,15 +102,12 @@ void  verif_var_dec_bien_init_use(){
 	int i;
     for ( i = 0; i < MAX; i++){
     	Node * current = head[i] ; 
-    	if (current != NULL ){ 				// case non vide
+    	if (current != NULL && strcmp(current->type,"methode") != 0 && strcmp(current->scope,"methode") != 0 ){ 				// case non vide
 			if(current->test_init == 0 ){ 	// car non initialise
-            
-			    int index = hashf(current->identifier);
 				printf("WARNING:  La Variable  %s  declaree mais non initialisee  la ligne # %d .  \n", current->identifier,line);
 			}
 			 
 			else if(current->test_use == 0){ // car non utilise
-			int index = hashf(current->identifier);
 			printf("WARNING:  La Variable  %s  declaree mais non initialisee  la ligne # %d .  \nn", current->identifier,line);
 			}
 		}

@@ -105,23 +105,23 @@ VTIG                    :VTI VTIG
 
 VTI                     :VIRGULE Type ID
                         {
-                                //insert_declaration($3,"methode","variable",0,0,0);
-                                //nbr_args++;
+                                insert_declaration($3,"args","variable",0,0,0);
+                                nbr_args++;
                         }
                         |error Type ID                  {yyerror ("VIRGULE manquant dans la line :"); YYABORT}     
                         |VIRGULE Type error                  {yyerror ("identifier errone dans la line :"); YYABORT}     ;
 
 TIVTIG                  :Type ID VTIG
                         {
-                                //insert_declaration($2,"methode","variable",0,0,nbr_args);
-                                //nbr_args++;
+                                insert_declaration($2,"args","variable",0,0,nbr_args);
+                                nbr_args++;
                         }
                         |epsilon;
 
 MethodDeclaration	:PUBLIC Type ID PAR_OUVRANTE TIVTIG PAR_FERMANTE ACO_OUVRANTE VarDeclarationG STATEMENTG RETURN EXPRESSION POINT_VIRGULE ACO_FERMANTE   
                         {
-                                //insert_declaration($3,"global","methode",0,0,nbr_args);
-                                //nbr_args = 0;
+                                insert_declaration($3,"global","methode",0,0,nbr_args);
+                                nbr_args = 0;
 
                         }
                         |error Type ID PAR_OUVRANTE TIVTIG PAR_FERMANTE ACO_OUVRANTE VarDeclarationG STATEMENTG RETURN EXPRESSION POINT_VIRGULE ACO_FERMANTE    {yyerror ("mot clee class manquant ou errone dans la line :"); YYABORT}
@@ -200,9 +200,10 @@ STATEMENT		:STATEMENTG
 
 
 EXPRESSION               :EXPRESSION OPERATOR EXPRESSION                                                           
-                        { printf("erreur de calcul les val ne sont pas initalise");
-                        use_var($1); 
-                        use_var($3);}
+                        {       printf("erreur de calcul les val ne sont pas initalise");
+                                use_var($1); 
+                                use_var($3);
+                        }
                         |EXPRESSION error EXPRESSION                                                              {yyerror ("operateur manquant dans la line :"); YYABORT}
 
                         |EXPRESSION TAB_OUVRANTE EXPRESSION TAB_FERMANTE
@@ -214,6 +215,10 @@ EXPRESSION               :EXPRESSION OPERATOR EXPRESSION
                         |EXPRESSION POINT error                                                                 {yyerror ("mot cle LENGTH manquant dans la line :"); YYABORT}
 
                         |EXPRESSION POINT ID PAR_OUVRANTE EVEXPRESSION PAR_FERMANTE
+                        {
+                                verif_args($3,nbr_param);
+                                nbr_param = 0;
+                        }
                 
                         |EXPRESSION error ID PAR_OUVRANTE EVEXPRESSION PAR_FERMANTE                             {yyerror ("POINT manquant dans la line :"); YYABORT}
                         |EXPRESSION POINT error PAR_OUVRANTE EVEXPRESSION PAR_FERMANTE                          {yyerror ("erreur identifier errone dans la line :"); YYABORT}
@@ -251,6 +256,9 @@ EVEXPRESSION		:EXPRESSION VEXPRESSION
 			|epsilon;
 
 VEXPRESSION		:VIRGULE EXPRESSION VEXPRESSION
+                        {
+                                nbr_param++;
+                        }
                       
                         |error EXPRESSION VEXPRESSION                                                                      {yyerror ("erreur VIRGULE manquante dans la line :"); YYABORT}
 			|epsilon;
