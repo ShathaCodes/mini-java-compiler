@@ -8,37 +8,39 @@
 Node * head[100];            
 int taille = 0;
 
+extern int line;
+
+
 //------------------------------------------------------- Function to insert an identifier
-int insert(char * id, char * scope, char * type, int lineNo, int test_init , int test_use)
+int insert(char * id, char * scope, char * type,   int test_init , int test_use, int nbr_args)
 {
-    int k;
-    printf("in\n");
     int index = hashf(id);
-    printf("%s inserted",id);
     Node* p = (Node *) malloc (sizeof (Node));
     p->identifier = id;
     p->scope = scope;
     p->type = type;
-    p->lineNo = lineNo;
     p->test_init = test_init;
     p->test_use = test_use;
+    p->nbr_args = nbr_args;
+    
       
     if (head[index] == NULL) {
-        printf("here");
-        head[index] = p;
-        printf("on line %d",head[index]->lineNo);
+        printf("\n here");
+        head[index] = p;   
         taille++;
-        printf("\n %d  inserted", index);
+        printf(" %s inserted on line %d \n",id,line);
+        print(p);
         return 1;
     }
   
-    else {printf("there");
+    else {
         Node* start = head[index];
         while (start->next != NULL)
             start = start->next;
         start->next = p;
         printf("%d",(start->next)->test_init);
         printf("\n %d  inserted", index);
+        print(p);
   		taille ++;
         return 1;
     }
@@ -48,7 +50,7 @@ int insert(char * id, char * scope, char * type, int lineNo, int test_init , int
 
   
 //------------------------------------------------------- Function to modify an identifier
-int  modify(char * id, char * scope, char * type, int lineNo, int test_init ,int test_use)
+int  modify(char * id, char * scope, char * type,   int test_init ,int test_use, int nbr_args )
 {
     int index = hashf(id);
     Node* start = head[index];
@@ -60,9 +62,9 @@ int  modify(char * id, char * scope, char * type, int lineNo, int test_init ,int
         if (strcmp(start->identifier,id)) {
             start->scope = scope;
             start->type = type;
-            start->lineNo = lineNo;
             start->test_init = test_init;
             start->test_use = test_use;
+            start->nbr_args = nbr_args;
             return 1;
         }
         start = start->next;
@@ -74,19 +76,14 @@ int  modify(char * id, char * scope, char * type, int lineNo, int test_init ,int
 //------------------------------------------------------- Function to find an identifier
 Node *  find(char * id)
 {
-    
     int index = hashf(id);
-    printf("%d", index);
     Node* start = head[index];
-    
     if (start == NULL)
         return NULL;
-
-    else  {
-            printf("%s", start->identifier);
-            return start;
+    if (start != NULL) {
+        return start;
     }
-    printf("done");
+  
     return NULL; // not found
 }
   
@@ -104,49 +101,48 @@ int  hashf(char * id)
     return (asciiSum % 100);
 } 
 
-//------------------------------------------------------- V�rifier la red�finition des variables d�j� d�clar�es 
+//------------------------------------------------------- Verifier la redefinition des variables deja declarees 
 
-void  insert_declaration(char * id, char * scope, char * type, int lineno, int test_init , int test_use){
-    printf("hereeeeee");
+void  insert_declaration(char * id, char * scope, char * type,   int test_init , int test_use ,int nbr_args){
     Node * x = find(id);
-    printf("hereeeeee");
     if (x != NULL){
-    	printf("ERROR: Variable  %d  deja declaree a la ligne # %d . \n", x->identifier,x->lineNo);
+    	printf("ERROR: Variable  %s  deja declaree a la ligne # %d . \n", x->identifier,line);
 	}
     else
-        insert(id, scope, type, lineno, test_init , test_use);
+        insert(id, scope, type, test_init , test_use, nbr_args);
 
 }
 
-//------------------------------------------------------- V�rifier qu�une variable d�clar�e est bien utilis�e => parcours table
+//------------------------------------------------------- Verifier qu'une variable declaree est bien utilisee => parcours table
 
 void  verif_var_dec_bien_init_use(){
 	int i;
     for ( i = 0; i < MAX; i++){
     	Node * current = head[i] ; 
     	if (current != NULL ){ 				// case non vide
-			if(current->test_init == 0 ){ 	// car non initialis� 
+			if(current->test_init == 0 ){ 	// car non initialise
+            
 			    int index = hashf(current->identifier);
-				printf("WARNING:  La Variable  %d  declaree mais non initialisee  la ligne # %d .  \n", index,current->lineNo);
+				printf("WARNING:  La Variable  %s  declaree mais non initialisee  la ligne # %d .  \n", current->identifier,line);
 			}
 			 
 			else if(current->test_use == 0){ // car non utilise
 			int index = hashf(current->identifier);
-			printf("WARNING:  La Variable  %d  declaree mais non initialisee  la ligne # %d .  \nn", index,current->lineNo);
+			printf("WARNING:  La Variable  %s  declaree mais non initialisee  la ligne # %d .  \nn", current->identifier,line);
 			}
 		}
 	}  
 }
-//------------------------------------------------------- Function to  use 
+//------------------------------------------------------- Function to use a variable
 
-void    use_var(char * id)
+void use_var(char * id)
 {
 
     Node* x=find(id);
     if (x!=NULL )
      if ( x->test_init!=0)
            {
-               modify(x->identifier , x->scope, x->type, x->lineNo, x->test_init ,1);
+               modify(x->identifier , x->scope, x->type, x->test_init ,1, 0);
                 }
         else 
             {
@@ -160,7 +156,7 @@ void    use_var(char * id)
 
 
 }
-//------------------------------------------------------- Function to  init var
+//------------------------------------------------------- Function to initialize var
 
 
 void  init_var(char * id)
@@ -169,7 +165,7 @@ void  init_var(char * id)
     Node* x=find(id);
     if (x!=NULL )
         { 
-        modify(x->identifier , x->scope, x->type, x->lineNo, 1 ,x->test_use);
+        modify(x->identifier , x->scope, x->type, 1 ,x->test_use, 0);
         }
     else
         {
@@ -177,4 +173,26 @@ void  init_var(char * id)
        }
 
 
+}
+
+
+void print(Node * node){
+    printf("%s  scope=%s type=%s , %d %d , args=%d \n", node->identifier, node->scope, node->type,node->test_init, node->test_use, node->nbr_args );
+}
+
+
+
+void verif_args(char* id, int nbr){
+    Node* x=find(id);
+    if (x!=NULL && strcmp(x->type, "methode")) // methode existe
+        { 
+        if(x->nbr_args > nbr){
+            printf("\n ERROR on line #%d : nombre d'arguments insuffisant .\n",line);
+        }
+        else if(x->nbr_args < nbr){
+            printf("\n ERROR on line #%d : plusieurs arguments, il faut donner %d parametres .\n",line,x->nbr_args);
+        }
+        }
+    else
+        printf("\n ERROR on line #%d : methode non decalree .\n",line);
 }
