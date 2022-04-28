@@ -5,8 +5,7 @@
 #include <string.h>
 #include "semantic.h"
 
-Node * head[100];            
-int taille = 0;
+Node * head[100];   
 
 extern int line;
 
@@ -24,9 +23,7 @@ int insert(char * id, char * scope, char * type,   int test_init , int test_use,
     p->nbr_args = nbr_args;
       
     if (head[index] == NULL) {
-        head[index] = p;   
-        taille++;
-        //printf(" %s inserted on line %d \n",id,line);
+        head[index] = p;
         print(p);
         return 1;
     }
@@ -102,7 +99,7 @@ void  verif_var_dec_bien_init_use(){
 	int i;
     for ( i = 0; i < MAX; i++){
     	Node * current = head[i] ; 
-    	if (current != NULL && strcmp(current->type,"methode") != 0 && strcmp(current->scope,"methode") != 0 ){ 				// case non vide
+    	if (current != NULL && strcmp(current->type,"methode") != 0 && strcmp(current->scope,"args") != 0 ){ 				// case non vide
 			if(current->test_init == 0 ){ 	// car non initialise
 				printf("WARNING:  La Variable  %s  declaree mais non initialisee  la ligne # %d .  \n", current->identifier,line);
 			}
@@ -164,7 +161,7 @@ void print(Node * node){
 
 void verif_args(char* id, int nbr){
     Node* x=find(id);
-    if (x!=NULL && strcmp(x->type, "methode")) // methode existe
+    if (x!=NULL && strcmp(x->type, "methode") ==0 ) // methode existe
         { 
         if(x->nbr_args > nbr){
             printf("\n ERROR on line #%d : nombre d'arguments insuffisant .\n",line);

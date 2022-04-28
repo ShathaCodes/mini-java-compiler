@@ -113,7 +113,7 @@ VTI                     :VIRGULE Type ID
 
 TIVTIG                  :Type ID VTIG
                         {
-                                insert_declaration($2,"args","variable",0,0,nbr_args);
+                                insert_declaration($2,"args","variable",0,0,0);
                                 nbr_args++;
                         }
                         |epsilon;
@@ -216,6 +216,7 @@ EXPRESSION               :EXPRESSION OPERATOR EXPRESSION
 
                         |EXPRESSION POINT ID PAR_OUVRANTE EVEXPRESSION PAR_FERMANTE
                         {
+                                printf("verif args %d", nbr_param);
                                 verif_args($3,nbr_param);
                                 nbr_param = 0;
                         }
@@ -253,6 +254,9 @@ EXPRESSION               :EXPRESSION OPERATOR EXPRESSION
 
 
 EVEXPRESSION		:EXPRESSION VEXPRESSION
+                        {
+                                nbr_param++;
+                        }
 			|epsilon;
 
 VEXPRESSION		:VIRGULE EXPRESSION VEXPRESSION

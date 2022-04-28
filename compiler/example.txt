@@ -14,7 +14,7 @@ class dog extends cat {
     }
 
     public int fonction2(int i , int j){
-        System.out.println(k.fonction1(a,b));
+        System.out.println(k.fonction1(a,b,c,d));
         return 65 ;
     }
 }
