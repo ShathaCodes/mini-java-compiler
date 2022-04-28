@@ -2,16 +2,16 @@
 	
 
 #include <stdio.h>
-#include <string.h>
-#include <stdbool.h>	
 #include "semantic.c"	
- 			
+
+#define YYSTYPE char *
+
+int yyparse(void); 			
 int yyerror(char const *msg);	
 int yylex(void);
 extern int line;
 
-int nbr_args = 0;
-int nbr_param = 0;
+#define YYERROR_VERBOSE 1
 
 %}
 
@@ -65,7 +65,7 @@ int nbr_param = 0;
 
 %%
                                                            
-program			:  MainClass ClassDeclarationG ;
+program			:  MainClass ClassDeclarationG {printf("Analyze finished with success \n")};
 
     
 
@@ -75,7 +75,8 @@ ClassDeclarationG       :ClassDeclaration ClassDeclarationG
                         |epsilon;
 
 
-ClassDeclaration	:CLASS ID EXTENDSIDG ACO_OUVRANTE VarDeclarationG MethodDeclarationG ACO_FERMANTE
+ClassDeclaration	:CLASS ID EXTENDSIDG ACO_OUVRANTE VarDeclarationG MethodDeclarationG ACO_FERMANTE {verif_var_dec_bien_init_use()}
+
                         |error ID EXTENDSIDG ACO_OUVRANTE VarDeclarationG MethodDeclarationG ACO_FERMANTE          {yyerror (" erreur mot cle class errone dans la line : "); YYABORT}
                         |CLASS error  EXTENDSIDG ACO_OUVRANTE VarDeclarationG MethodDeclarationG ACO_FERMANTE          {yyerror (" erreur identifier errone dans la line : "); YYABORT}
                         |CLASS ID  EXTENDSIDG error VarDeclarationG MethodDeclarationG ACO_FERMANTE              {yyerror (" erreur acolade ouvarnte  manquant dans la line : "); YYABORT}
@@ -87,7 +88,7 @@ EXTENDSIDG		:EXTENDS ID
                         |CLASS error  {yyerror ("erreur identifier errone dans la line :"); YYABORT}; 
 
 
-VarDeclarationG		:VarDeclaration VarDeclarationG	
+VarDeclarationG		:VarDeclaration VarDeclarationG	 
                         |epsilon;
 
 MethodDeclarationG	:MethodDeclaration MethodDeclarationG	
@@ -97,12 +98,12 @@ STATEMENTG		:STATEMENT STATEMENTG
                         |epsilon;
 
 VarDeclaration		:Type ID  POINT_VIRGULE
-                        {
-                                printf("\n hello \n");
-                                insert_declaration($2, "global", "var", 0, 0 , 0);
-                        }
+			{
+                       insert_declaration($2, "global", $1, 0, 0 , 0);
+			}
                         |Type error POINT_VIRGULE {yyerror ("erreur identifier errone dans la line :"); YYABORT} 
-                        |Type ID  error  {yyerror ("POINT_VIRGULE  manquant dans la line :"); YYABORT}; 
+                        |Type ID  error  {yyerror ("POINT_VIRGULE  manquant dans la line :"); YYABORT};
+
 
 VTIG                    :VTI VTIG
                         |epsilon;
@@ -177,10 +178,12 @@ STATEMENT		:STATEMENTG
                         |PRINT PAR_OUVRANTE EXPRESSION error  POINT_VIRGULE                    {yyerror (" parenthese  fermante manquant dans la line: "); YYABORT}
                         |PRINT PAR_OUVRANTE EXPRESSION PAR_FERMANTE  error                     {yyerror ("POINT_VIRGULE  manquant dans la line :"); YYABORT}
 
-                        |ID AFFECTATION EXPRESSION POINT_VIRGULE
-                        |error AFFECTATION EXPRESSION POINT_VIRGULE                                     {yyerror ("erreur identifier errone dans la line :"); YYABORT};
-                        |ID error EXPRESSION POINT_VIRGULE                                              {yyerror ("AFFECTATION errone dans la line :"); YYABORT};
+                        |ID AFFECTATION EXPRESSION POINT_VIRGULE                                {printf("hiii");init_var($1)}
+                        |error AFFECTATION EXPRESSION POINT_VIRGULE                                     {yyerror ("erreur identifier errone dans la line :"); YYABORT}
+                        |ID error EXPRESSION POINT_VIRGULE                                              {yyerror ("AFFECTATION errone dans la line :"); YYABORT}
                         |ID AFFECTATION EXPRESSION error                                                {yyerror ("POINT_VIRGULE  manquant dans la line :"); YYABORT}
+			
+
 
                         |ID TAB_OUVRANTE EXPRESSION TAB_FERMANTE AFFECTATION EXPRESSION POINT_VIRGULE
                         |error TAB_OUVRANTE EXPRESSION TAB_FERMANTE AFFECTATION EXPRESSION POINT_VIRGULE         {yyerror ("erreur identifier errone dans la line :"); YYABORT}
@@ -190,14 +193,15 @@ STATEMENT		:STATEMENTG
                         |ID TAB_OUVRANTE EXPRESSION TAB_FERMANTE AFFECTATION EXPRESSION error                     {yyerror ("POINT_VIRGULE  manquant dans la line :"); YYABORT};
 
 
-EXPRESSION		:EXPRESSION OPERATOR EXPRESSION
+EXPRESSION		:EXPRESSION OPERATOR EXPRESSION    
+{ printf("erreur de calcul les val ne sont pas initalise");use_var($1) ;use_var($3);}                                                        
                         |EXPRESSION error EXPRESSION                                                              {yyerror ("operateur manquant dans la line :"); YYABORT}
 
                         |EXPRESSION TAB_OUVRANTE EXPRESSION TAB_FERMANTE
                         |EXPRESSION error EXPRESSION TAB_FERMANTE                                               {yyerror ("erreur tabulation ouvrante manquante dans la line :"); YYABORT}
                         |EXPRESSION TAB_OUVRANTE EXPRESSION error                                               {yyerror ("erreur tabulation fermante manquante dans la line :"); YYABORT}
 
-                        |EXPRESSION POINT LENGTH 
+                        |EXPRESSION POINT LENGTH                                                               
                         |EXPRESSION error LENGTH                                                                {yyerror ("POINT manquant dans la line :"); YYABORT}
                         |EXPRESSION POINT error                                                                 {yyerror ("mot cle LENGTH manquant dans la line :"); YYABORT}
 
@@ -258,6 +262,7 @@ int yyerror(char const *msg) {
 }
 
 extern FILE *yyin;
+
 
 main()
 {

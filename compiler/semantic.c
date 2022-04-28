@@ -14,8 +14,7 @@ int insert(char * id, char * scope, char * type, int lineNo, int test_init , int
     int k;
     printf("in\n");
     int index = hashf(id);
-    printf("%s ",id);
-    printf("%d ",index);
+    printf("%s inserted",id);
     Node* p = (Node *) malloc (sizeof (Node));
     p->identifier = id;
     p->scope = scope;
@@ -23,7 +22,6 @@ int insert(char * id, char * scope, char * type, int lineNo, int test_init , int
     p->lineNo = lineNo;
     p->test_init = test_init;
     p->test_use = test_use;
-    printf("inserted ");
       
     if (head[index] == NULL) {
         printf("here");
@@ -115,7 +113,8 @@ void  insert_declaration(char * id, char * scope, char * type, int lineno, int t
     if (x != NULL){
     	printf("ERROR: Variable  %d  deja declaree a la ligne # %d . \n", x->identifier,x->lineNo);
 	}
-    insert(id, scope, type, lineno, test_init , test_use);
+    else
+        insert(id, scope, type, lineno, test_init , test_use);
 
 }
 
