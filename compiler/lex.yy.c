@@ -504,11 +504,12 @@ char *yytext;
  		
  #include "miniJava.tab.h"	                                                                         	
  /* Local stuff we need here... */	
-#include <math.h>	
+#include <math.h>
 
+#define YYSTYPE char*
 int line =1;
  			
-#line 512 "lex.yy.c"
+#line 513 "lex.yy.c"
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -659,11 +660,11 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
 
-#line 43 "miniJava.lex"
+#line 44 "miniJava.lex"
 
 
 
-#line 667 "lex.yy.c"
+#line 668 "lex.yy.c"
 
 	if ( yy_init )
 		{
@@ -756,235 +757,235 @@ do_action:	/* This label is used only to access EOF actions. */
 	{ /* beginning of action switch */
 case 1:
 YY_RULE_SETUP
-#line 46 "miniJava.lex"
+#line 47 "miniJava.lex"
 /* pas d'actions */
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 50 "miniJava.lex"
+#line 51 "miniJava.lex"
 line++;
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 51 "miniJava.lex"
-return CLASS;
+#line 52 "miniJava.lex"
+{ yylval = (int)strdup(yytext); return CLASS; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 52 "miniJava.lex"
-return PSVM;
+#line 53 "miniJava.lex"
+{ yylval = (int)strdup(yytext); return PSVM; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 53 "miniJava.lex"
-return PUBLIC;
+#line 54 "miniJava.lex"
+{ yylval = (int)strdup(yytext); return PUBLIC; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 54 "miniJava.lex"
-return STATIC;
+#line 55 "miniJava.lex"
+{ yylval = (int)strdup(yytext); return STATIC; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 55 "miniJava.lex"
-return VOID;
+#line 56 "miniJava.lex"
+{ yylval = (int)strdup(yytext); return VOID;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 56 "miniJava.lex"
-return MAIN;
+#line 57 "miniJava.lex"
+{ yylval = (int)strdup(yytext); return MAIN;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 57 "miniJava.lex"
-return EXTENDS;
+#line 58 "miniJava.lex"
+{ yylval = (int)strdup(yytext); return EXTENDS;}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 58 "miniJava.lex"
-return RETURN;
+#line 59 "miniJava.lex"
+{ yylval = (int)strdup(yytext); return RETURN;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 59 "miniJava.lex"
-return IF;
+#line 60 "miniJava.lex"
+{ yylval = (int)strdup(yytext); return IF;}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 60 "miniJava.lex"
-return ELSE;
+#line 61 "miniJava.lex"
+{ yylval = (int)strdup(yytext); return ELSE;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 61 "miniJava.lex"
-return WHILE;
+#line 62 "miniJava.lex"
+{ yylval = (int)strdup(yytext); return WHILE;}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 62 "miniJava.lex"
-return PRINT;
+#line 63 "miniJava.lex"
+{ yylval = (int)strdup(yytext);	     return PRINT;}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 63 "miniJava.lex"
-return LENGTH;
+#line 64 "miniJava.lex"
+{ yylval = (int)strdup(yytext);    return LENGTH;}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 64 "miniJava.lex"
-return THIS;
+#line 65 "miniJava.lex"
+{ yylval = (int)strdup(yytext);return THIS;}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 65 "miniJava.lex"
-return NEW;
+#line 66 "miniJava.lex"
+{ yylval = (int)strdup(yytext);return NEW;}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 66 "miniJava.lex"
-return POINT;
+#line 67 "miniJava.lex"
+{ yylval = (int)strdup(yytext);return POINT;}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 67 "miniJava.lex"
-return POINT_VIRGULE;
+#line 68 "miniJava.lex"
+{ yylval = (int)strdup(yytext);return POINT_VIRGULE;}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 68 "miniJava.lex"
-return VIRGULE;
+#line 69 "miniJava.lex"
+{ yylval = (int)strdup(yytext);return VIRGULE;}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 71 "miniJava.lex"
-return BOOLEAN;
+#line 72 "miniJava.lex"
+{ yylval = (int)strdup(yytext);return BOOLEAN;}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 72 "miniJava.lex"
-return INT;
+#line 73 "miniJava.lex"
+{ yylval = (int)strdup(yytext); return INT;}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 73 "miniJava.lex"
-return STRING;
+#line 74 "miniJava.lex"
+{ yylval = (int)strdup(yytext); return STRING;}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 78 "miniJava.lex"
-return PAR_OUVRANTE;
+#line 79 "miniJava.lex"
+{ yylval = (int)strdup(yytext);return PAR_OUVRANTE;}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 79 "miniJava.lex"
-return PAR_FERMANTE;
+#line 80 "miniJava.lex"
+{ yylval = (int)strdup(yytext);return PAR_FERMANTE;}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 80 "miniJava.lex"
-return ACO_OUVRANTE;
+#line 81 "miniJava.lex"
+{ yylval = (int)strdup(yytext);return ACO_OUVRANTE;}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 81 "miniJava.lex"
-return ACO_FERMANTE;
+#line 82 "miniJava.lex"
+{ yylval = (int)strdup(yytext);return ACO_FERMANTE;}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 82 "miniJava.lex"
-return TAB_OUVRANTE;
+#line 83 "miniJava.lex"
+{ yylval = (int)strdup(yytext);return TAB_OUVRANTE;}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 83 "miniJava.lex"
-return TAB_FERMANTE;
+#line 84 "miniJava.lex"
+{ yylval = (int)strdup(yytext);return TAB_FERMANTE;}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 86 "miniJava.lex"
-return AFFECTATION;
+#line 87 "miniJava.lex"
+{ yylval = (int)strdup(yytext);return AFFECTATION;}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 88 "miniJava.lex"
-return OPERATOR;  
+#line 89 "miniJava.lex"
+{ yylval = (int)strdup(yytext);return OPERATOR;  }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 89 "miniJava.lex"
-return OPERATOR; 
+#line 90 "miniJava.lex"
+{ yylval = (int)strdup(yytext);return OPERATOR; }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 90 "miniJava.lex"
-return OPERATOR; 
+#line 91 "miniJava.lex"
+{ yylval = (int)strdup(yytext);return OPERATOR; }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 91 "miniJava.lex"
-return OPERATOR; 
+#line 92 "miniJava.lex"
+{ yylval = (int)strdup(yytext);return OPERATOR; }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 92 "miniJava.lex"
-return OPERATOR;   
+#line 93 "miniJava.lex"
+{ yylval = (int)strdup(yytext);return OPERATOR;   }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 93 "miniJava.lex"
-return OPERATOR;  
+#line 94 "miniJava.lex"
+{ yylval = (int)strdup(yytext);return OPERATOR;  }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 94 "miniJava.lex"
-return NOT;
+#line 95 "miniJava.lex"
+{ yylval = (int)strdup(yytext);return NOT;}
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 97 "miniJava.lex"
-return ID;  
+#line 98 "miniJava.lex"
+{ yylval = (int)strdup(yytext);return ID;  }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 98 "miniJava.lex"
-return NUMBER;  
+#line 99 "miniJava.lex"
+{ yylval = (int)strdup(yytext);return NUMBER;  }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 99 "miniJava.lex"
-return BOOL; 
+#line 100 "miniJava.lex"
+{ yylval = (int)strdup(yytext);return BOOL; }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 103 "miniJava.lex"
-printf("commentaire line");  
+#line 104 "miniJava.lex"
+{ yylval = (int)strdup(yytext);printf("commentaire line");  }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 104 "miniJava.lex"
-printf("commentaire long");   
+#line 105 "miniJava.lex"
+{ yylval = (int)strdup(yytext);printf("commentaire long"); }  
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 109 "miniJava.lex"
-{fprintf(stderr," illegal identifier \'%s\' on line :%d\n",yytext,yylineno);}
+#line 110 "miniJava.lex"
+{yylval = (int)strdup(yytext); fprintf(stderr," illegal identifier \'%s\' on line :%d\n",yytext,yylineno);}
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 110 "miniJava.lex"
-{fprintf(stderr," comment ouvert \'%s\' on line :%d\n",yytext,yylineno);}
+#line 111 "miniJava.lex"
+{yylval = (int)strdup(yytext); fprintf(stderr," comment ouvert \'%s\' on line :%d\n",yytext,yylineno);}
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 111 "miniJava.lex"
-{fprintf(stderr," comment fermant \'%s\' on line :%d\n",yytext,yylineno);}	
+#line 112 "miniJava.lex"
+{yylval = (int)strdup(yytext); fprintf(stderr," comment fermant \'%s\' on line :%d\n",yytext,yylineno);}	
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 115 "miniJava.lex"
+#line 116 "miniJava.lex"
 ECHO;
 	YY_BREAK
-#line 988 "lex.yy.c"
+#line 989 "lex.yy.c"
 			case YY_STATE_EOF(INITIAL):
 				yyterminate();
 
@@ -1868,7 +1869,7 @@ int main()
 	return 0;
 	}
 #endif
-#line 115 "miniJava.lex"
+#line 116 "miniJava.lex"
 
 
 

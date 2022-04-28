@@ -1,11 +1,17 @@
 %{
 	
 
-#include <stdio.h>	
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>	
+#include "semantic.c"	
  			
 int yyerror(char const *msg);	
 int yylex(void);
 extern int line;
+
+int nbr_args = 0;
+int nbr_param = 0;
 
 %}
 
@@ -90,7 +96,10 @@ MethodDeclarationG	:MethodDeclaration MethodDeclarationG
 STATEMENTG		:STATEMENT STATEMENTG 
                         |epsilon;
 
-VarDeclaration		:Type ID  POINT_VIRGULE;
+VarDeclaration		:Type ID  POINT_VIRGULE
+                        {
+                                insert_declaration("x", "global", "var", 0, 0 , 0);
+                        }
                         |Type error POINT_VIRGULE {yyerror ("erreur identifier errone dans la line :"); YYABORT} 
                         |Type ID  error  {yyerror ("POINT_VIRGULE  manquant dans la line :"); YYABORT}; 
 

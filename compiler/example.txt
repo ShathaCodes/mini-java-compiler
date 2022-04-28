@@ -1,0 +1,16 @@
+class Factorial{
+    public static void main(String [] args){   
+z=7;
+
+    }
+}
+class dog extends cat {
+    int a ;
+int a ;
+int b;
+int c ;
+
+}
+
+
+
