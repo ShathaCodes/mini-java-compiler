@@ -186,7 +186,10 @@ STATEMENT		:STATEMENTG
                         |PRINT PAR_OUVRANTE EXPRESSION error  POINT_VIRGULE                    {yyerror (" parenthese  fermante manquant dans la line: "); YYABORT}
                         |PRINT PAR_OUVRANTE EXPRESSION PAR_FERMANTE  error                     {yyerror ("POINT_VIRGULE  manquant dans la line :"); YYABORT}
 
-                        |ID AFFECTATION EXPRESSION POINT_VIRGULE                                {printf("hiii");init_var($1)}
+                        |ID AFFECTATION EXPRESSION POINT_VIRGULE                                
+                        {
+                                init_var($1);
+                        }
                         |error AFFECTATION EXPRESSION POINT_VIRGULE                                     {yyerror ("erreur identifier errone dans la line :"); YYABORT};
                         |ID error EXPRESSION POINT_VIRGULE                                              {yyerror ("AFFECTATION errone dans la line :"); YYABORT};
                         |ID AFFECTATION EXPRESSION error                                                {yyerror ("POINT_VIRGULE  manquant dans la line :"); YYABORT}
@@ -200,7 +203,7 @@ STATEMENT		:STATEMENTG
 
 
 EXPRESSION               :EXPRESSION OPERATOR EXPRESSION                                                           
-                        {       printf("erreur de calcul les val ne sont pas initalise");
+                        {       
                                 use_var($1); 
                                 use_var($3);
                         }
@@ -216,7 +219,6 @@ EXPRESSION               :EXPRESSION OPERATOR EXPRESSION
 
                         |EXPRESSION POINT ID PAR_OUVRANTE EVEXPRESSION PAR_FERMANTE
                         {
-                                printf("verif args %d", nbr_param);
                                 verif_args($3,nbr_param);
                                 nbr_param = 0;
                         }

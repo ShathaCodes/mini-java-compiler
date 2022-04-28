@@ -24,7 +24,7 @@ int insert(char * id, char * scope, char * type,   int test_init , int test_use,
       
     if (head[index] == NULL) {
         head[index] = p;
-        print(p);
+        //print(p);
         return 1;
     }
   
@@ -86,7 +86,7 @@ int search_index(){
 void  insert_declaration(char * id, char * scope, char * type,   int test_init , int test_use ,int nbr_args){
     Node * x = find(id);
     if (x != NULL && strcmp(x->scope,"args") != 0){
-    	printf("ERROR: Variable  %s  deja declaree a la ligne # %d . \n", x->identifier,line);
+    	printf("ERROR on line #%d: Variable  %s  deja declaree. \n", line, x->identifier);
 	}
     else
         insert(id, scope, type, test_init , test_use, nbr_args);
@@ -101,11 +101,11 @@ void  verif_var_dec_bien_init_use(){
     	Node * current = head[i] ; 
     	if (current != NULL && strcmp(current->type,"methode") != 0 && strcmp(current->scope,"args") != 0 ){ 				// case non vide
 			if(current->test_init == 0 ){ 	// car non initialise
-				printf("WARNING:  La Variable  %s  declaree mais non initialisee  la ligne # %d .  \n", current->identifier,line);
+				printf("WARNING:  La Variable  %s  declaree mais non initialisee  la ligne # %d.  \n", current->identifier,line);
 			}
 			 
 			else if(current->test_use == 0){ // car non utilise
-			printf("WARNING:  La Variable  %s  declaree mais non initialisee  la ligne # %d .  \nn", current->identifier,line);
+			printf("WARNING:  La Variable  %s  declaree mais non initialisee  la ligne # %d.  \nn", current->identifier,line);
 			}
 		}
 	}  
@@ -123,12 +123,12 @@ void use_var(char * id)
                 }
         else 
             {
-            printf("\n variable utilise mais pas initialiser . \n");
+            printf("ERROR on line %d : variable  %s utilise mais pas initialiser. \n",line,x->identifier);
 
         }
     else
         {
-        printf("\nvariable non decalree .\n");
+        printf("ERROR on line %d :  variable %s non decalree.\n",line, id);
        }
 
 
@@ -146,7 +146,7 @@ void  init_var(char * id)
         }
     else
         {
-        printf("\nvariable non decalree .\n");
+        printf("\n ERROR on line #%d : variable %s non decalree .\n",line, id);
        }
 
 
@@ -164,12 +164,12 @@ void verif_args(char* id, int nbr){
     if (x!=NULL && strcmp(x->type, "methode") ==0 ) // methode existe
         { 
         if(x->nbr_args > nbr){
-            printf("\n ERROR on line #%d : nombre d'arguments insuffisant .\n",line);
+            printf("\n ERROR on line #%d : nombre d'arguments insuffisant.\n",line);
         }
         else if(x->nbr_args < nbr){
             printf("\n ERROR on line #%d : plusieurs arguments, il faut donner %d parametres .\n",line,x->nbr_args);
         }
         }
     else
-        printf("\n ERROR on line #%d : methode non decalree .\n",line);
+        printf("\n ERROR on line #%d : methode '%s' non decalree .\n",line,id);
 }

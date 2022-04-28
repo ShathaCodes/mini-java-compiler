@@ -958,12 +958,12 @@ YY_RULE_SETUP
 case 41:
 YY_RULE_SETUP
 #line 104 "miniJava.lex"
-{ yylval = (int)strdup(yytext);printf("commentaire line");  }
+{ yylval = (int)strdup(yytext);  }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
 #line 105 "miniJava.lex"
-{ yylval = (int)strdup(yytext);printf("commentaire long"); }  
+{ yylval = (int)strdup(yytext); }  
 	YY_BREAK
 case 43:
 YY_RULE_SETUP

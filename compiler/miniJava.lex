@@ -101,8 +101,8 @@ COMMENT_BLOC_ouvrant 	   {comment_ouvrant}([^*]|\*+[^*/])*\*+
 
 
 
-{COMMENT_LINE}         						{ yylval = (int)strdup(yytext);printf("commentaire line");  }
-{COMMENT_LONG}        						 { yylval = (int)strdup(yytext);printf("commentaire long"); }  
+{COMMENT_LINE}         						{ yylval = (int)strdup(yytext);  }
+{COMMENT_LONG}        						 { yylval = (int)strdup(yytext); }  
 
 
 
