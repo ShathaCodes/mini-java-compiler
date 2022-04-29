@@ -1815,7 +1815,7 @@ yyreduce:
 
 /* Line 1455 of yacc.c  */
 #line 75 "miniJava.y"
-    {verif_var_dec_bien_init_use();}
+    {verif_var_used();}
     break;
 
   case 6:

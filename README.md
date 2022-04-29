@@ -1,6 +1,6 @@
 # mini Java compiler 
 
-This projects contain a Java compiler built with C language, as well as an application for text editing and compiling.
+This projects contain a Java compiler built with C language, as well as a text editor.
 
 ### Run the application
 ```

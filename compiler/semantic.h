@@ -13,7 +13,6 @@ typedef struct node {
 	int test_init;
 	int test_use;
 	int nbr_args;
-    struct node* next;
    
 } Node;
   
@@ -22,14 +21,12 @@ int search_index();
 int insert( char * id,  char * scope,  char * type, int test_init , int test_use, int nbr_args);
   
 Node * find( char * id);
-  
-int deleteRecord( char * id);
-  
+    
 int modify( char * id,  char * scope,  char * type, int test_init , int test_use, int nbr_args);
 
 void insert_declaration( char * id,  char * scope,  char * type, int test_init , int test_use, int nbr_args);
     
-void verif_var_dec_bien_init_use();
+void verif_var_used();
     
 void init_var( char * id);
     

@@ -72,7 +72,7 @@ ClassDeclarationG       :ClassDeclaration ClassDeclarationG
 
 
 ClassDeclaration    :CLASS ID EXTENDSIDG ACO_OUVRANTE VarDeclarationG MethodDeclarationG ACO_FERMANTE 
-                        {verif_var_dec_bien_init_use()}
+                        {verif_var_used()}
                         |error ID EXTENDSIDG ACO_OUVRANTE VarDeclarationG MethodDeclarationG ACO_FERMANTE          {yyerror (" erreur mot cle class errone dans la line : "); YYABORT}
                         |CLASS error  EXTENDSIDG ACO_OUVRANTE VarDeclarationG MethodDeclarationG ACO_FERMANTE          {yyerror (" erreur identifier errone dans la line : "); YYABORT}
                         |CLASS ID  EXTENDSIDG error VarDeclarationG MethodDeclarationG ACO_FERMANTE              {yyerror (" erreur acolade ouvarnte  manquant dans la line : "); YYABORT}

@@ -37,19 +37,13 @@ int  modify(char * id, char * scope, char * type,   int test_init ,int test_use,
 {
     Node* start = find(id);
   
-    if (start == NULL)
-        return -1;
-  
-    while (start != NULL) {
-        if (strcmp(start->identifier,id)) {
+    if (start != NULL && strcmp(start->identifier,id)) {
             start->scope = scope;
             start->type = type;
             start->test_init = test_init;
             start->test_use = test_use;
             start->nbr_args = nbr_args;
             return 1;
-        }
-        start = start->next;
     }
   
     return 0; // id not found
@@ -76,7 +70,7 @@ int search_index(){
             return i;
         }
     }
-    printf("table overflow");
+    printf("ERROR : table overflown.");
     return -1 ;
 }
   
@@ -86,7 +80,7 @@ int search_index(){
 void  insert_declaration(char * id, char * scope, char * type,   int test_init , int test_use ,int nbr_args){
     Node * x = find(id);
     if (x != NULL && strcmp(x->scope,"args") != 0){
-    	printf("ERROR on line #%d: Variable  %s  deja declaree. \n", line, x->identifier);
+    	printf("ERROR on line #%d : Variable %s is already defined. \n", line, x->identifier);
 	}
     else
         insert(id, scope, type, test_init , test_use, nbr_args);
@@ -95,17 +89,17 @@ void  insert_declaration(char * id, char * scope, char * type,   int test_init ,
 
 //------------------------------------------------------- Verifier qu'une variable declaree est bien utilisee => parcours table
 
-void  verif_var_dec_bien_init_use(){
+void  verif_var_used(){
 	int i;
     for ( i = 0; i < MAX; i++){
     	Node * current = head[i] ; 
     	if (current != NULL && strcmp(current->type,"methode") != 0 && strcmp(current->scope,"args") != 0 ){ 				// case non vide
 			if(current->test_init == 0 ){ 	// car non initialise
-				printf("WARNING:  La Variable  %s  declaree mais non initialisee  la ligne # %d.  \n", current->identifier,line);
+				printf("WARNING: Variable  %s  defined but not used.  \n",current->identifier);
 			}
 			 
 			else if(current->test_use == 0){ // car non utilise
-			printf("WARNING:  La Variable  %s  declaree mais non initialisee  la ligne # %d.  \nn", current->identifier,line);
+			printf("WARNING: Variable  %s  defined but non used.  \n",current->identifier);
 			}
 		}
 	}  
@@ -123,13 +117,11 @@ void use_var(char * id)
                 }
         else 
             {
-            printf("ERROR on line %d : variable  %s utilise mais pas initialiser. \n",line,x->identifier);
+            printf("ERROR on line %d : variable  %s might not have been initialized. \n",line,x->identifier);
 
         }
     else
-        {
-        printf("ERROR on line %d :  variable %s non decalree.\n",line, id);
-       }
+        printf("ERROR on line %d :  cannot find symbol %s.\n",line, id);
 
 
 }
@@ -141,15 +133,10 @@ void  init_var(char * id)
 
     Node* x=find(id);
     if (x!=NULL )
-        { 
         modify(x->identifier , x->scope, x->type, 1 ,x->test_use, 0);
-        }
     else
-        {
-        printf("\n ERROR on line #%d : variable %s non decalree .\n",line, id);
-       }
-
-
+        
+        printf("ERROR on line %d : cannot find symbol %s.\n",line, id);
 }
 
 
@@ -164,12 +151,12 @@ void verif_args(char* id, int nbr){
     if (x!=NULL && strcmp(x->type, "methode") ==0 ) // methode existe
         { 
         if(x->nbr_args > nbr){
-            printf("\n ERROR on line #%d : nombre d'arguments insuffisant.\n",line);
+            printf("ERROR on line #%d : insufficient number of arguments.\n",line);
         }
         else if(x->nbr_args < nbr){
-            printf("\n ERROR on line #%d : plusieurs arguments, il faut donner %d parametres .\n",line,x->nbr_args);
+            printf("ERROR on line #%d : too many arguments, must give %d.\n",line,x->nbr_args);
         }
         }
     else
-        printf("\n ERROR on line #%d : methode '%s' non decalree .\n",line,id);
+        printf("ERROR on line #%d : function '%s' is not defined.\n",line, id);
 }

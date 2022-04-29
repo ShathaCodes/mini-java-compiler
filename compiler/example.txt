@@ -1,21 +1,30 @@
-class Factorial{
+class Animal{
     public static void main(String [] args){
-        z=7; //contrainte : variable initialisé bien declaree 
+        z=7;
     }
 }
-class dog extends cat {
-    int a ;
-    int a ;//contrainte : declaration variable
+class Dog extends Animal {
+    int a ;	
     int b;
-    public int fonction1(int k , int h){
+    int c;
+    public int bark(int k , int h){
         System.out.println(k);
-        System.out.println(k.fonction(k,h));
+        System.out.println(k.eat(k,h));	
         return 65 ;
     }
 
-    public int fonction2(int i , int j){
-        System.out.println(k.fonction1(a,b,c,d));
-        System.out.println(k.fonction1(a));
-        return b + a ; //contrainte : utilisation des var non initiliser
+    public int eat(int i , int j){
+        System.out.println( k.bark(a, b, c) );	
+        System.out.println( k.bark(a) );
+        return c + d ;
     }
 }
+
+
+
+
+
+
+
+
+
