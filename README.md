@@ -6,7 +6,7 @@ This projects contain a Java compiler built with C language, as well as a text e
 ```
 python .\main.py
 ```
-
+![execution](https://raw.githubusercontent.com/ShathaCodes/mini-java-compiler/main/execution.PNG)
 
 ### Execute the compiler
 
