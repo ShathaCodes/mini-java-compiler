@@ -1,24 +1,28 @@
 class Animal{
     public static void main(String [] args){
-        z=7;
+        int a;
+        int b;
+        int c;
+        System.out.println(a);
+        a = 5;
+        c = 6;
+        b = a + 11;
+        while(b > 5)
+            c = 1;
+        if ( a < c ){
+            a = 7;
+        }
+        else {
+            a = 5;
+        }
+        
+        
     }
 }
 class Dog extends Animal {
-    int a ;	
-    int b;
-    int c;
-    public int bark(int k , int h){
-        System.out.println(k);
-        System.out.println(k.eat(k,h));	
-        return 65 ;
-    }
-
-    public int eat(int i , int j){
-        System.out.println( k.bark(a, b, c) );	
-        System.out.println( k.bark(a) );
-        return c + d ;
-    }
+    
 }
+
 
 
 

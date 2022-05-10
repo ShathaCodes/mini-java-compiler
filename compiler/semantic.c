@@ -37,7 +37,7 @@ int  modify(char * id, char * scope, char * type,   int test_init ,int test_use,
 {
     Node* start = find(id);
   
-    if (start != NULL && strcmp(start->identifier,id)) {
+    if (start != NULL) {
             start->scope = scope;
             start->type = type;
             start->test_init = test_init;
@@ -60,6 +60,19 @@ Node *  find(char * id)
         }
     }
     return NULL; // not found
+    
+}
+
+int  find_index(char * id)
+{
+    int i;
+    for (i = 0; i< 100; i++){
+        Node* start = head[i];
+        if (start != NULL && strcmp(start->identifier,id) == 0 ){
+            return i;
+        }
+    }
+    return -1; // not found
     
 }
 
@@ -95,7 +108,7 @@ void  verif_var_used(){
     	Node * current = head[i] ; 
     	if (current != NULL && strcmp(current->type,"methode") != 0 && strcmp(current->scope,"args") != 0 ){ 				// case non vide
 			if(current->test_init == 0 ){ 	// car non initialise
-				printf("WARNING: Variable  %s  defined but not used.  \n",current->identifier);
+				printf("WARNING: Variable  %s  initialized but not used.  \n",current->identifier);
 			}
 			 
 			else if(current->test_use == 0){ // car non utilise
@@ -106,37 +119,43 @@ void  verif_var_used(){
 }
 //------------------------------------------------------- Function to use a variable
 
-void use_var(char * id)
+int use_var(char * id)
 {
 
     Node* x=find(id);
-    if (x!=NULL )
+    int index = find_index(id);
+    if (index > -1 )
      if ( x->test_init!=0)
            {
-               modify(x->identifier , x->scope, x->type, x->test_init ,1, 0);
+               int k = modify(x->identifier , x->scope, x->type, x->test_init ,1, 0);
                 }
         else 
             {
             printf("ERROR on line %d : variable  %s might not have been initialized. \n",line,x->identifier);
 
         }
-    else
-        printf("ERROR on line %d :  cannot find symbol %s.\n",line, id);
+    //else
+        //printf("ERROR on line %d :  cannot find symbol %s.\n",line, id);
+    return index;
 
 
 }
 //------------------------------------------------------- Function to initialize var
 
 
-void  init_var(char * id)
+int  init_var(char * id)
 {
 
     Node* x=find(id);
-    if (x!=NULL )
-        modify(x->identifier , x->scope, x->type, 1 ,x->test_use, 0);
+    int index = find_index(id);
+    if (x!=NULL ){
+        int k = modify(x->identifier , x->scope, x->type, 1 ,x->test_use, 0);
+    }
+        
     else
         
         printf("ERROR on line %d : cannot find symbol %s.\n",line, id);
+    return index;
 }
 
 

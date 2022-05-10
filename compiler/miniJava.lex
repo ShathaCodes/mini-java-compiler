@@ -83,7 +83,8 @@ COMMENT_BLOC_ouvrant 	   {comment_ouvrant}([^*]|\*+[^*/])*\*+
 {tabouvrante}                                { yylval = (int)strdup(yytext);return TAB_OUVRANTE;}
 {tabfermante}                                { yylval = (int)strdup(yytext);return TAB_FERMANTE;}
 
-										
+"=="                                         { yylval = (int)strdup(yytext);return OPERATOR;  }
+"!="                                         { yylval = (int)strdup(yytext);return OPERATOR;  }										
 "="	                                         { yylval = (int)strdup(yytext);return AFFECTATION;}
 
 "&&"                                         { yylval = (int)strdup(yytext);return OPERATOR;  }
@@ -92,6 +93,7 @@ COMMENT_BLOC_ouvrant 	   {comment_ouvrant}([^*]|\*+[^*/])*\*+
 "+"                                          { yylval = (int)strdup(yytext);return OPERATOR; }
 "-"                                          { yylval = (int)strdup(yytext);return OPERATOR;   }
 "*"                                           { yylval = (int)strdup(yytext);return OPERATOR;  }
+"/"                                           { yylval = (int)strdup(yytext);return OPERATOR;  }
 "!"										    	 { yylval = (int)strdup(yytext);return NOT;}
 
 
